@@ -1,3 +1,4 @@
 # Advent of Code
 
-[Advent of Code](https://adventofcode.com/) exercises.
+[Advent of Code](https://adventofcode.com/) puzzles.
+
