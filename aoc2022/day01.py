@@ -17,18 +17,16 @@ def cal_groups(input_dir: str) -> list:
         inventory.append(cals)
     return inventory
 
-## Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
-print('Part 1')
 for x in ['sample', 'input']:
     print(x)
     groups = cal_groups(x)
+
+    ## Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
+    print('Part 1')
     print(max(groups))
 
-## Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
-print('Part 2')
-for x in ['sample', 'input']:
-    print(x)
-    groups = cal_groups(x)
+    ## Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
+    print('Part 2')
     groups_sorted = sorted(groups, reverse=True)
     top_three = groups_sorted[0:3]
     print(sum(top_three))
