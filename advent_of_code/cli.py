@@ -11,7 +11,7 @@ LOCAL_TZ = timezone(timedelta(hours=11))
 
 local_dt = datetime.now(tz=LOCAL_TZ)
 current_year = int(local_dt.strftime("%Y"))
-aoc_max_day = 25
+AOC_MAX_DAY = 25
 aoc_current_start = datetime(current_year, 12, 1, 0, 0, 0, tzinfo=AOC_TZ)
 aoc_current_end = datetime(current_year, 12, 25, 0, 0, 0, tzinfo=AOC_TZ)
 if local_dt < aoc_current_start:
@@ -52,7 +52,7 @@ def list_years():
 
 # @main.command()
 # @click.option("--aoc-year", type=click.IntRange(AOC_MIN_YEAR, aoc_max_year), default=aoc_max_year, show_default=True)
-# @click.option("--aoc-day", type=click.IntRange(1, aoc_max_day), default=aoc_max_day, show_default=True)
+# @click.option("--aoc-day", type=click.IntRange(1, AOC_MAX_DAY), default=AOC_MAX_DAY, show_default=True)
 # def run(aoc_year: int, aoc_day: int):
     # Run code for given year and day.
     # If not provided, set puzzle year to current year.
@@ -67,7 +67,7 @@ def list_years():
     #         if aoc_year == current_year:
     #             aoc_day = aoc_current_max_day
     #         else:
-    #             aoc_day = aoc_max_day
+    #             aoc_day = AOC_MAX_DAY
 
 if __name__ == "__main__":
     main()
