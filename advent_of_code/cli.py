@@ -35,13 +35,16 @@ def create(aoc_year: int):
     aoc_path = Path(aoc_dir)
     if aoc_path.exists():
         if aoc_path.is_dir():
-            click.echo('Directory exists at this path')
+            click.echo('Directory exists at this path', err=True)
         else:
-            click.echo('File exists at this path')
+            click.echo('File exists at this path', err=True)
     else:
         aoc_path.mkdir()
         data_path = aoc_path.joinpath('data')
         data_path.mkdir()
+        click.echo('Created directories:')
+        click.echo(str(aoc_path))
+        click.echo(str(data_path))
 
 @main.command()
 def list_years():
