@@ -41,4 +41,5 @@ def rps_score(data_suffix: str) -> int:
     print(total_score)
     return total_score
 
-rps_score('example')
+for suffix in ['example', 'input']:
+    rps_score(suffix)
