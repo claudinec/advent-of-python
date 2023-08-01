@@ -58,7 +58,7 @@ def create(year: int):
 
 
 @main.command()
-def list_years():
+def list():
     # List available years.
     click.echo("Puzzles are available for these years:")
     for year in range(AOC_MIN_YEAR, AOC_MAX_YEAR + 1):
@@ -67,33 +67,33 @@ def list_years():
 
 @main.command()
 @click.option(
-    "--aoc-year",
+    "--year",
     type=click.IntRange(AOC_MIN_YEAR, AOC_MAX_YEAR),
     default=AOC_MAX_YEAR,
     show_default=True,
 )
 @click.option(
-    "--aoc-day",
+    "--day",
     type=click.IntRange(1, AOC_MAX_DAY),
     default=AOC_MAX_DAY,
     show_default=True,
 )
-def run(aoc_year: int, aoc_day: int):
+def run(year: int, day: int):
     """Run code for given year and day.
     """
-    if aoc_year is None:
-        aoc_year = CURRENT_YEAR
-    if aoc_year == CURRENT_YEAR and AOC_DT < AOC_CURRENT_BEGIN:
+    if year is None:
+        year = CURRENT_YEAR
+    if year == CURRENT_YEAR and AOC_DT < AOC_CURRENT_BEGIN:
         click.echo("Too early, try a previous year", err=True)
     else:
-        aoc_dir = f"aoc{aoc_year:04d}"
+        aoc_dir = f"aoc{year:04d}"
         aoc_path = Path(aoc_dir)
-        if aoc_day is None:
-            if aoc_year == CURRENT_YEAR:
-                aoc_day = AOC_CURRENT_MAX_DAY
+        if day is None:
+            if year == CURRENT_YEAR:
+                day = AOC_CURRENT_MAX_DAY
             else:
-                aoc_day = AOC_MAX_DAY
-        day_str = f"day{aoc_day:02d}"
+                day = AOC_MAX_DAY
+        day_str = f"day{day:02d}"
         code_path = aoc_path.joinpath(f"{day_str}.py")
         data_path = aoc_path.joinpath("data")
         data_files = [
