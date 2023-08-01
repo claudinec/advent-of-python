@@ -1,6 +1,6 @@
 # Advent of Code
 
-[Advent of Code](https://adventofcode.com/) puzzles.
+Learn Pytest with [Advent of Code](https://adventofcode.com/).
 
 Directory structure
 
