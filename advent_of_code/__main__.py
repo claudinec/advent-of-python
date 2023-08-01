@@ -59,7 +59,8 @@ def create(year: int):
 
 @main.command()
 def list():
-    # List available years.
+    """List available puzzle years.
+    """
     click.echo("Puzzles are available for these years:")
     for year in range(AOC_MIN_YEAR, AOC_MAX_YEAR + 1):
         click.echo(year)
