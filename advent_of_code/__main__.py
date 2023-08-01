@@ -32,7 +32,21 @@ def is_year_valid(year: int):
     elif year == CURRENT_YEAR and AOC_DT < AOC_CURRENT_BEGIN:
         raise Exception("This year's puzzles haven't started yet")
     else:
-        print("Puzzles are available for " + str(year))
+        return True
+
+
+def is_day_valid(year: int, day: int):
+    exc_str = "Puzzle is not available for this day"
+    if year == CURRENT_YEAR:
+        if day > AOC_CURRENT_MAX_DAY
+            raise Exception(exc_str)
+        else:
+            return True
+    else:
+        if day > AOC_MAX_DAY:
+            raise Exception(exc_str)
+        else:
+            return True
 
 
 @click.group()
@@ -79,7 +93,7 @@ def list():
 @click.option(
     "--year",
     type=click.IntRange(AOC_MIN_YEAR, AOC_MAX_YEAR),
-    default=AOC_MAX_YEAR,
+    default=AOC_MAX_YEAR,2
     show_default=True,
 )
 @click.option(
@@ -91,23 +105,23 @@ def list():
 def run(year: int, day: int):
     """Run code for given year and day.
     """
-    if year == CURRENT_YEAR and AOC_DT < AOC_CURRENT_BEGIN:
-        click.echo("Too early, try a previous year", err=True)
-    else:
+    try:
+        is_year_valid(year)
         aoc_dir = f"aoc{year:04d}"
         aoc_path = Path(aoc_dir)
-        if day is None:
-            if year == CURRENT_YEAR:
-                day = AOC_CURRENT_MAX_DAY
-            else:
-                day = AOC_MAX_DAY
-        day_str = f"day{day:02d}"
-        code_path = aoc_path.joinpath(f"{day_str}.py")
-        data_path = aoc_path.joinpath("data")
-        data_files = [
-            data_path.joinpath(f"{day_str}-example.txt"),
-            data_path.joinpath(f"{day_str}-input.txt"),
-        ]
+        try:
+            is_day_valid(year, day)
+            day_str = f"day{day:02d}"
+            code_path = aoc_path.joinpath(f"{day_str}.py")
+            data_path = aoc_path.joinpath("data")
+            data_files = [
+                data_path.joinpath(f"{day_str}-example.txt"),
+                data_path.joinpath(f"{day_str}-input.txt"),
+            ]
+        except as day_exc:
+            click.echo(str(day_exc), err=True)
+    except as year_exc:
+        click.echo(str(year_exc), err=True)
 
 
 if __name__ == "__main__":
