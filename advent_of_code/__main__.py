@@ -118,9 +118,9 @@ def run(year: int, day: int):
                 data_path.joinpath(f"{day_str}-example.txt"),
                 data_path.joinpath(f"{day_str}-input.txt"),
             ]
-        except as day_exc:
+        except Exception as day_exc:
             click.echo(str(day_exc), err=True)
-    except as year_exc:
+    except Exception as year_exc:
         click.echo(str(year_exc), err=True)
 
 
