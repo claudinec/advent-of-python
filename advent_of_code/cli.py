@@ -8,6 +8,7 @@ from pathlib import Path
 import click
 
 
+AOC_ROOT = Path(__file__).parent
 AOC_MIN_YEAR = 2015
 AOC_MAX_DAY = 25
 AOC_TZ = timezone(timedelta(hours=-5))
@@ -32,21 +33,21 @@ def main():
 
 @main.command()
 @click.option(
-    "--aoc-year",
+    "--year",
     type=click.IntRange(AOC_MIN_YEAR, AOC_MAX_YEAR),
     default=AOC_MAX_YEAR,
     show_default=True,
 )
-def create(aoc_year: int):
+def create(year: int):
     """Create directory structure for given year.
     """
-    aoc_dir = f"aoc{aoc_year:04d}"
-    aoc_path = Path(aoc_dir)
+    aoc_dir = f"aoc{year:04d}"
+    aoc_path = AOC_ROOT.joinpath(aoc_dir)
     if aoc_path.exists():
         if aoc_path.is_dir():
-            click.echo("Directory exists at this path", err=True)
+            click.echo("Directory exists at this path: " + str(aoc_path), err=True)
         else:
-            click.echo("File exists at this path", err=True)
+            click.echo("File exists at this path: " + str(aoc_path), err=True)
     else:
         aoc_path.mkdir()
         data_path = aoc_path.joinpath("data")
@@ -87,7 +88,6 @@ def run(aoc_year: int, aoc_day: int):
     else:
         aoc_dir = f"aoc{aoc_year:04d}"
         aoc_path = Path(aoc_dir)
-        # Work out puzzle day if not provided.
         if aoc_day is None:
             if aoc_year == CURRENT_YEAR:
                 aoc_day = AOC_CURRENT_MAX_DAY
@@ -96,7 +96,7 @@ def run(aoc_year: int, aoc_day: int):
         day_str = f"day{aoc_day:02d}"
         code_path = aoc_path.joinpath(f"{day_str}.py")
         data_path = aoc_path.joinpath("data")
-        data_dirs = [
+        data_files = [
             data_path.joinpath(f"{day_str}-example.txt"),
             data_path.joinpath(f"{day_str}-input.txt"),
         ]
