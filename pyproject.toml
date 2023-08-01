@@ -13,5 +13,12 @@ dependencies = [
     "click ~=8.1"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "black ~=23.7",
+    "mypy ~=1.4",
+    "pytest ~=7.4"
+]
+
 [project.urls]
 Home = "https://www.claudinec.net/"
