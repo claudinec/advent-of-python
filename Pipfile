@@ -6,8 +6,5 @@ name = "pypi"
 [packages]
 click = "~=8.1"
 
-[dev-packages]
-pylint = "*"
-
 [requires]
 python_version = "3.11"
