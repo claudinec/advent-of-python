@@ -1,17 +1,20 @@
 """Main command-line interface for Advent of Code exercises in Python.
 """
 
+
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import click
 
+
 AOC_MIN_YEAR = 2015
 AOC_MAX_DAY = 25
 AOC_TZ = timezone(timedelta(hours=-5))
+AOC_DT = datetime.now(tz=AOC_TZ)
 LOCAL_TZ = timezone(timedelta(hours=11))
 LOCAL_DT = datetime.now(tz=LOCAL_TZ)
-CURRENT_YEAR = LOCAL_DT.year
+CURRENT_YEAR = AOC_DT.year
 AOC_CURRENT_BEGIN = datetime(CURRENT_YEAR, 12, 1, 0, 0, 0, tzinfo=AOC_TZ)
 AOC_CURRENT_END = datetime(CURRENT_YEAR, 12, 25, 0, 0, 0, tzinfo=AOC_TZ)
 if LOCAL_DT < AOC_CURRENT_BEGIN:
@@ -21,7 +24,7 @@ else:
     if LOCAL_DT >= AOC_CURRENT_END:
         AOC_CURRENT_MAX_DAY = 25
     else:
-        AOC_CURRENT_MAX_DAY = int(LOCAL_DT.strftime("%d"))
+        AOC_CURRENT_MAX_DAY = AOC_DT.day
 
 
 @click.group()
@@ -37,7 +40,8 @@ def main():
     show_default=True,
 )
 def create(aoc_year: int):
-    # Create directory structure for given year.
+    """Create directory structure for given year.
+    """
     aoc_dir = f"aoc{aoc_year:04d}"
     aoc_path = Path(aoc_dir)
     if aoc_path.exists():
@@ -76,8 +80,8 @@ def list_years():
     show_default=True,
 )
 def run(aoc_year: int, aoc_day: int):
-    # Run code for given year and day.
-    # If not provided, set puzzle year to current year.
+    """Run code for given year and day.
+    """
     if aoc_year is None:
         aoc_year = CURRENT_YEAR
     if aoc_year == CURRENT_YEAR and LOCAL_DT < AOC_CURRENT_BEGIN:
