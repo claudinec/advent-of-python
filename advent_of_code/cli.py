@@ -49,27 +49,27 @@ def create(aoc_year: int):
 @main.command()
 def list_years():
     # List available years.
-    click.echo('Years available:')
-    for year in range(AOC_MIN_YEAR, aoc_max_year+1):
+    click.echo('Puzzles are available for these years:')
+    for year in range(AOC_MIN_YEAR, AOC_MAX_YEAR + 1):
         click.echo(year)
 
 @main.command()
-@click.option("--aoc-year", type=click.IntRange(AOC_MIN_YEAR, aoc_max_year), default=aoc_max_year, show_default=True)
+@click.option("--aoc-year", type=click.IntRange(AOC_MIN_YEAR, AOC_MAX_YEAR), default=AOC_MAX_YEAR, show_default=True)
 @click.option("--aoc-day", type=click.IntRange(1, AOC_MAX_DAY), default=AOC_MAX_DAY, show_default=True)
 def run(aoc_year: int, aoc_day: int):
     # Run code for given year and day.
     # If not provided, set puzzle year to current year.
     if aoc_year is None:
-        aoc_year = current_year
-    if aoc_year == current_year and local_dt < aoc_current_start:
+        aoc_year = CURRENT_YEAR
+    if aoc_year == CURRENT_YEAR and LOCAL_DT < AOC_CURRENT_BEGIN:
         click.echo("Too early, try a previous year", err=True)
     else:
         aoc_dir = f'aoc{aoc_year:04d}'
         aoc_path = Path(aoc_dir)
         # Work out puzzle day if not provided.
         if aoc_day is None:
-            if aoc_year == current_year:
-                aoc_day = aoc_current_max_day
+            if aoc_year == CURRENT_YEAR:
+                aoc_day = AOC_CURRENT_MAX_DAY
             else:
                 aoc_day = AOC_MAX_DAY
         day_str = f'day{aoc_day:02d}'
