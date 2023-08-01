@@ -12,16 +12,14 @@ AOC_MIN_YEAR = 2015
 AOC_MAX_DAY = 25
 AOC_TZ = timezone(timedelta(hours=-5))
 AOC_DT = datetime.now(tz=AOC_TZ)
-LOCAL_TZ = timezone(timedelta(hours=11))
-LOCAL_DT = datetime.now(tz=LOCAL_TZ)
 CURRENT_YEAR = AOC_DT.year
 AOC_CURRENT_BEGIN = datetime(CURRENT_YEAR, 12, 1, 0, 0, 0, tzinfo=AOC_TZ)
 AOC_CURRENT_END = datetime(CURRENT_YEAR, 12, 25, 0, 0, 0, tzinfo=AOC_TZ)
-if LOCAL_DT < AOC_CURRENT_BEGIN:
+if AOC_DT < AOC_CURRENT_BEGIN:
     AOC_MAX_YEAR = CURRENT_YEAR - 1
 else:
     AOC_MAX_YEAR = CURRENT_YEAR
-    if LOCAL_DT >= AOC_CURRENT_END:
+    if AOC_DT >= AOC_CURRENT_END:
         AOC_CURRENT_MAX_DAY = 25
     else:
         AOC_CURRENT_MAX_DAY = AOC_DT.day
@@ -84,7 +82,7 @@ def run(aoc_year: int, aoc_day: int):
     """
     if aoc_year is None:
         aoc_year = CURRENT_YEAR
-    if aoc_year == CURRENT_YEAR and LOCAL_DT < AOC_CURRENT_BEGIN:
+    if aoc_year == CURRENT_YEAR and AOC_DT < AOC_CURRENT_BEGIN:
         click.echo("Too early, try a previous year", err=True)
     else:
         aoc_dir = f"aoc{aoc_year:04d}"
