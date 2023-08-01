@@ -93,7 +93,7 @@ def list():
 @click.option(
     "--year",
     type=click.IntRange(AOC_MIN_YEAR, AOC_MAX_YEAR),
-    default=AOC_MAX_YEAR,2
+    default=AOC_MAX_YEAR,
     show_default=True,
 )
 @click.option(
