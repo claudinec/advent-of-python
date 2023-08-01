@@ -38,7 +38,7 @@ def is_year_valid(year: int):
 def is_day_valid(year: int, day: int):
     exc_str = "Puzzle is not available for this day"
     if year == CURRENT_YEAR:
-        if day > AOC_CURRENT_MAX_DAY
+        if day > AOC_CURRENT_MAX_DAY:
             raise Exception(exc_str)
         else:
             return True
