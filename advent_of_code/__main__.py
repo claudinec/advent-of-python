@@ -26,6 +26,16 @@ else:
         AOC_CURRENT_MAX_DAY = AOC_DT.day
 
 
+def check_valid_year(year: int):
+    if year > CURRENT_YEAR:
+        raise Exception("Year is in the future")
+    elif year == CURRENT_YEAR and AOC_DT < AOC_CURRENT_BEGIN:
+        raise Exception("This year's puzzles haven't started yet")
+    else:
+        print("Puzzles are available for " + str(year))
+
+
+
 @click.group()
 def main():
     click.echo("Advent of Code")
@@ -82,8 +92,6 @@ def list():
 def run(year: int, day: int):
     """Run code for given year and day.
     """
-    if year is None:
-        year = CURRENT_YEAR
     if year == CURRENT_YEAR and AOC_DT < AOC_CURRENT_BEGIN:
         click.echo("Too early, try a previous year", err=True)
     else:

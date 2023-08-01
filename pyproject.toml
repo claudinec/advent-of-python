@@ -22,3 +22,9 @@ dev = [
 
 [project.urls]
 Home = "https://www.claudinec.net/"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
