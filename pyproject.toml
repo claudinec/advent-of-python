@@ -9,6 +9,9 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
 dynamic = ["version", "description"]
+dependencies = [
+    "click ~=8.1"
+]
 
 [project.urls]
 Home = "https://www.claudinec.net/"
