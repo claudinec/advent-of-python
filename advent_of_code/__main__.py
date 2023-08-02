@@ -35,7 +35,6 @@ def check_valid_year(year: int):
         print("Puzzles are available for " + str(year))
 
 
-
 @click.group()
 def main():
     click.echo("Advent of Code")
