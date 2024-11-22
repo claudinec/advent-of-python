@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "advent_of_code"
-authors = [{name = "Claudine Chionh", email = "info@claudinec.net"}]
+authors = [{name = "Claudine Chionh", email = "hello+python@claudinec.net"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
